@@ -473,7 +473,7 @@ nav_msgs::msg::Odometry NavSatTransform::cartesianToMap(
 
   // Set header information stamp because we would like to know the robot's
   // position at that timestamp
-  gps_odom.header.frame_id = world_frame_id_;
+  gps_odom.header.frame_id = "map";
   gps_odom.header.stamp = gps_update_time_;
 
   // Now fill out the message. Set the orientation to the identity.

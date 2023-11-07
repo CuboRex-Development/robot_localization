@@ -2065,6 +2065,14 @@ void RosFilter<T>::periodicUpdate()
     // If the world_frame_id_ is the odom_frame_id_ frame, then we can just
     // send the transform. If the world_frame_id_ is the map_frame_id_ frame,
     // we'll have some work to do.
+    RF_DEBUG( "------ USER DEBUG : TRANSFORM --------\n" );
+    RF_DEBUG("pub. tf        : " << publish_transform_ << "\n");
+    RF_DEBUG("corrected data : " << corrected_data << "\n");
+    RF_DEBUG("last pub. stamp     : " << filter_utilities::toSec(last_published_stamp_) << "\n");
+    RF_DEBUG("filtered pos. stamp : " << filter_utilities::toSec(filtered_position->header.stamp) << "\n");
+    // RF_DEBUG("World tf :\n "          << world_base_link_trans_msg_ << "\n");
+    RF_DEBUG("------/USER DEBUG : TRANSFORM --------\n");
+
     if (publish_transform_ && !corrected_data) {
       if (filtered_position->header.frame_id == odom_frame_id_) {
         world_transform_broadcaster_->sendTransform(world_base_link_trans_msg_);
